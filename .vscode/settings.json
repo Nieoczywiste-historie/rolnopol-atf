@@ -3,5 +3,10 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit"
   },
-  "cSpell.userWords": ["Rolnopol"]
+  "cSpell.userWords": [
+    "Rolnopol"
+  ],
+  "[typescript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  }
 }
