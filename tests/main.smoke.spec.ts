@@ -13,8 +13,9 @@ test(
   await page.goto('/login.html');
   await page.waitForLoadState('load');
   await expect(page).toHaveURL(/login\.html/);
-  await expect(page.locator('body')).toBeVisible();
-  await expect(page.locator('form')).toBeVisible();
+  await expect(page.locator('[data-testid="login-form-container"]')).toBeVisible();
+  await expect(page.locator('[data-testid="login-form"]')).toBeVisible();
+  await expect(page.locator('[data-testid="login-submit-btn"]')).toHaveText('Login');
 });
 
 test(
@@ -23,7 +24,8 @@ test(
   await page.goto('/register.html');
   await page.waitForLoadState('load');
   await expect(page).toHaveURL(/register\.html/);
-  await expect(page.locator('body')).toBeVisible();
-  await expect(page.locator('form')).toBeVisible();
+  await expect(page.locator('[data-testid="register-form-container"]')).toBeVisible();
+  await expect(page.locator('[data-testid="register-form"]')).toBeVisible();
+  await expect(page.locator('[data-testid="register-submit-btn"]')).toBeVisible();
 });
 
