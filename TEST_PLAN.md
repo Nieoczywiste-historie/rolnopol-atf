@@ -60,6 +60,8 @@ The plan includes E2E and API tests for key areas:
 | TP-10 | P1 | Marketplace+Finance | Purchase active offer by another user | Ownership changes, `sold` status, financial transactions created | `@p1` `@marketplace` `@finance` |
 | TP-11 | P1 | Finance | Attempt purchase with insufficient balance | Purchase blocked, `Insufficient funds` error | `@p1` `@finance` `@negative` |
 | TP-12 | P2 | Health | Check health/db status endpoint | Endpoint returns OK status | `@p2` `@health` |
+| TP-13 | P1 | Smoke | Documentation page is visible and loaded | URL matches `/docs.html`, container and sidebar are visible | `@p1` `@smoke` |
+| TP-14 | P1 | Smoke | API Explorer page is visible and loaded | URL matches `/swagger.html`, Swagger iframe is visible | `@p1` `@smoke` |
 
 ## 10. Risks And Notes
 - Documentation indicates demo-only security aspects (for example plain text passwords) and these should not be treated as production security criteria.
