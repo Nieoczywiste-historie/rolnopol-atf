@@ -1,5 +1,11 @@
 # Copilot Instructions
 
+## Testing Framework
+
+This project uses the **Playwright Test** framework for end-to-end testing.
+
+- Always review `playwright.config.ts` before creating new tests — it defines base URL, browsers, timeouts, reporters, and other settings that tests must align with.
+
 ## Conventional Commits
 
 Use this format for commit messages:
