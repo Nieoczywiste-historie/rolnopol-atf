@@ -47,3 +47,28 @@ Every test must include tags matching the scenario from `TEST_PLAN.md` section 9
 ```ts
 test('login with valid credentials @p1 @auth @login @smoke', async ({ page }) => { ... });
 ```
+
+## Arrange Act Assert
+
+Every test body must use `// Arrange`, `// Act`, `// Assert` comments separated by blank lines. Omit `// Arrange` if there is no setup.
+
+**Example**:
+```ts
+test('register a new user with valid data', { tag: ['@p1', '@auth', '@registration'] }, async ({ page }) => {
+  // Arrange
+  const uniqueEmail = `testuser_${Date.now()}@example.com`;
+
+  await page.goto('/register.html');
+  await page.waitForLoadState('load');
+
+  // Act
+  await page.getByPlaceholder('Enter your email (e.g., john@example.com)').fill(uniqueEmail);
+  await page.getByPlaceholder('Enter your display name (e.g., John Doe)').fill('ATF Test User');
+  await page.getByPlaceholder('Enter your password').fill('Test123!');
+  await page.getByRole('button', { name: 'Create Account' }).click();
+
+  // Assert
+  await expect(page.getByRole('alert').locator('.notification-message')).toHaveText('Registration successful!');
+  await expect(page).toHaveURL(/login\.html/);
+});
+```
