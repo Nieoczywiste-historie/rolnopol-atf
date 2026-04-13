@@ -48,6 +48,22 @@ test(
 });
 
 test(
+  'register a new user with valid data',
+  { tag: ['@p1', '@auth', '@registration'] }, async ({ page }) => {
+  const uniqueEmail = `testuser_${Date.now()}@example.com`;
+
+  await page.goto('/register.html');
+  await page.waitForLoadState('load');
+
+  await page.getByPlaceholder('Enter your email (e.g., john@example.com)').fill(uniqueEmail);
+  await page.getByPlaceholder('Enter your display name (e.g., John Doe)').fill('ATF Test User');
+  await page.getByPlaceholder('Enter your password').fill('Test123!');
+  await page.getByRole('button', { name: 'Create Account' }).click();
+
+  await expect(page).toHaveURL(expectedData.login.url);
+});
+
+test(
   'docs page should be visible and loaded',
   { tag: ['@smoke', '@p1'] }, async ({ page }) => {
   await page.goto('/docs.html');
