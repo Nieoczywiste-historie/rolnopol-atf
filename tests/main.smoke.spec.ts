@@ -1,4 +1,6 @@
 import { expect, test } from '@playwright/test';
+import { RegisterPage } from '../src/pages/RegisterPage';
+import { generateUniqueEmail } from '../src/helpers/email';
 
 const expectedData = {
   home: {
@@ -47,32 +49,30 @@ test(
 test(
   'register page should be visible and loaded',
   { tag: ['@smoke', '@p1', '@auth', '@registration'] }, async ({ page }) => {
+  const registerPage = new RegisterPage(page);
+
   // Act
-  await page.goto('/register.html');
-  await page.waitForLoadState('load');
+  await registerPage.goto();
 
   // Assert
   await expect(page).toHaveURL(expectedData.register.url);
-  await expect(page.locator('[data-testid="register-subtitle"]')).toHaveText(expectedData.register.subtitle);
+  await expect(registerPage.subtitle).toHaveText(expectedData.register.subtitle);
 });
 
 test(
   'register a new user with valid data',
   { tag: ['@p1', '@auth', '@registration'] }, async ({ page }) => {
   // Arrange
-  const uniqueEmail = `testuser_${Date.now()}@example.com`;
+  const registerPage = new RegisterPage(page);
+  const uniqueEmail = generateUniqueEmail();
 
-  await page.goto('/register.html');
-  await page.waitForLoadState('load');
+  await registerPage.goto();
 
   // Act
-  await page.getByPlaceholder('Enter your email (e.g., john@example.com)').fill(uniqueEmail);
-  await page.getByPlaceholder('Enter your display name (e.g., John Doe)').fill('ATF Test User');
-  await page.getByPlaceholder('Enter your password').fill('Test123!');
-  await page.getByRole('button', { name: 'Create Account' }).click();
+  await registerPage.register(uniqueEmail, 'Test123!', 'ATF Test User');
 
   // Assert
-  await expect(page.getByRole('alert').locator('.notification-message')).toHaveText('Registration successful!');
+  await expect(registerPage.successNotification).toHaveText('Registration successful!');
   await expect(page).toHaveURL(expectedData.login.url);
 });
 
