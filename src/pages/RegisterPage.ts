@@ -1,8 +1,9 @@
 import { type Locator, type Page } from '@playwright/test';
+import { URLs } from '../urls';
 import { BasePage } from './BasePage';
 
 export class RegisterPage extends BasePage {
-  readonly url = '/register.html';
+  readonly url = URLs.register;
   readonly subtitle: Locator;
   readonly emailInput: Locator;
   readonly displayNameInput: Locator;
