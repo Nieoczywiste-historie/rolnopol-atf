@@ -1,6 +1,10 @@
 import { expect, test } from '@playwright/test';
-import { RegisterPage } from '../src/pages/RegisterPage';
 import { generateUniqueEmail } from '../src/helpers/email';
+import { DocsPage } from '../src/pages/DocsPage';
+import { HomePage } from '../src/pages/HomePage';
+import { LoginPage } from '../src/pages/LoginPage';
+import { RegisterPage } from '../src/pages/RegisterPage';
+import { SwaggerPage } from '../src/pages/SwaggerPage';
 
 const expectedData = {
   home: {
@@ -27,8 +31,11 @@ const expectedData = {
 test(
   'should display Rolnopol in the page title',
   { tag: ['@smoke', '@p1'] }, async ({ page }) => {
+  // Arrange
+  const homePage = new HomePage(page);
+
   // Act
-  await page.goto('/');
+  await homePage.goto();
 
   // Assert
   await expect(page).toHaveTitle(expectedData.home.title);
@@ -37,18 +44,21 @@ test(
 test(
   'login page should be visible and loaded',
   { tag: ['@smoke', '@p1', '@auth', '@login'] }, async ({ page }) => {
+  // Arrange
+  const loginPage = new LoginPage(page);
+
   // Act
-  await page.goto('/login.html');
-  await page.waitForLoadState('load');
+  await loginPage.goto();
 
   // Assert
   await expect(page).toHaveURL(expectedData.login.url);
-  await expect(page.locator('[data-testid="login-subtitle"]')).toHaveText(expectedData.login.subtitle);
+  await expect(loginPage.subtitle).toHaveText(expectedData.login.subtitle);
 });
 
 test(
   'register page should be visible and loaded',
   { tag: ['@smoke', '@p1', '@auth', '@registration'] }, async ({ page }) => {
+  // Arrange
   const registerPage = new RegisterPage(page);
 
   // Act
@@ -79,24 +89,28 @@ test(
 test(
   'docs page should be visible and loaded',
   { tag: ['@smoke', '@p1'] }, async ({ page }) => {
+  // Arrange
+  const docsPage = new DocsPage(page);
+
   // Act
-  await page.goto('/docs.html');
-  await page.waitForLoadState('load');
+  await docsPage.goto();
 
   // Assert
   await expect(page).toHaveURL(expectedData.docs.url);
-  await expect(page.locator('.docs-header-subtitle')).toHaveText(expectedData.docs.subtitle);
+  await expect(docsPage.subtitle).toHaveText(expectedData.docs.subtitle);
 });
 
 test(
   'swagger page should be visible and loaded',
   { tag: ['@smoke', '@p1'] }, async ({ page }) => {
+  // Arrange
+  const swaggerPage = new SwaggerPage(page);
+
   // Act
-  await page.goto('/swagger.html');
-  await page.waitForLoadState('load');
+  await swaggerPage.goto();
 
   // Assert
   await expect(page).toHaveURL(expectedData.swagger.url);
-  await expect(page.frameLocator('#swagger-frame').locator('.info .description')).toHaveText(expectedData.swagger.subtitle);
+  await expect(swaggerPage.apiDescription).toHaveText(expectedData.swagger.subtitle);
 });
 
