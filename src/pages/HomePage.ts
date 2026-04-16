@@ -1,13 +1,10 @@
 import { type Page } from '@playwright/test';
+import { BasePage } from './BasePage';
 
-export class HomePage {
-  readonly page: Page;
+export class HomePage extends BasePage {
+  readonly url = '/';
 
   constructor(page: Page) {
-    this.page = page;
-  }
-
-  async goto() {
-    await this.page.goto('/');
+    super(page);
   }
 }
