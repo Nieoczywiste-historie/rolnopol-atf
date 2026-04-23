@@ -1,4 +1,10 @@
 import { expect, test } from '@playwright/test';
+import { generateUniqueEmail } from '../src/helpers/email';
+import { DocsPage } from '../src/pages/DocsPage';
+import { HomePage } from '../src/pages/HomePage';
+import { LoginPage } from '../src/pages/LoginPage';
+import { RegisterPage } from '../src/pages/RegisterPage';
+import { SwaggerPage } from '../src/pages/SwaggerPage';
 
 const expectedData = {
   home: {
@@ -25,43 +31,86 @@ const expectedData = {
 test(
   'should display Rolnopol in the page title',
   { tag: ['@smoke', '@p1'] }, async ({ page }) => {
-  await page.goto('/');
+  // Arrange
+  const homePage = new HomePage(page);
+
+  // Act
+  await homePage.goto();
+
+  // Assert
   await expect(page).toHaveTitle(expectedData.home.title);
 });
 
 test(
   'login page should be visible and loaded',
   { tag: ['@smoke', '@p1', '@auth', '@login'] }, async ({ page }) => {
-  await page.goto('/login.html');
-  await page.waitForLoadState('load');
+  // Arrange
+  const loginPage = new LoginPage(page);
+
+  // Act
+  await loginPage.goto();
+
+  // Assert
   await expect(page).toHaveURL(expectedData.login.url);
-  await expect(page.locator('[data-testid="login-subtitle"]')).toHaveText(expectedData.login.subtitle);
+  await expect(loginPage.subtitle).toHaveText(expectedData.login.subtitle);
 });
 
 test(
   'register page should be visible and loaded',
   { tag: ['@smoke', '@p1', '@auth', '@registration'] }, async ({ page }) => {
-  await page.goto('/register.html');
-  await page.waitForLoadState('load');
+  // Arrange
+  const registerPage = new RegisterPage(page);
+
+  // Act
+  await registerPage.goto();
+
+  // Assert
   await expect(page).toHaveURL(expectedData.register.url);
-  await expect(page.locator('[data-testid="register-subtitle"]')).toHaveText(expectedData.register.subtitle);
+  await expect(registerPage.subtitle).toHaveText(expectedData.register.subtitle);
+});
+
+test(
+  'register a new user with valid data',
+  { tag: ['@p1', '@auth', '@registration'] }, async ({ page }) => {
+  // Arrange
+  const registerPage = new RegisterPage(page);
+  const uniqueEmail = generateUniqueEmail();
+
+  await registerPage.goto();
+
+  // Act
+  await registerPage.register(uniqueEmail, 'Test123!', 'ATF Test User');
+
+  // Assert
+  await expect(registerPage.successNotification).toHaveText('Registration successful!');
+  await expect(page).toHaveURL(expectedData.login.url);
 });
 
 test(
   'docs page should be visible and loaded',
   { tag: ['@smoke', '@p1'] }, async ({ page }) => {
-  await page.goto('/docs.html');
-  await page.waitForLoadState('load');
+  // Arrange
+  const docsPage = new DocsPage(page);
+
+  // Act
+  await docsPage.goto();
+
+  // Assert
   await expect(page).toHaveURL(expectedData.docs.url);
-  await expect(page.locator('.docs-header-subtitle')).toHaveText(expectedData.docs.subtitle);
+  await expect(docsPage.subtitle).toHaveText(expectedData.docs.subtitle);
 });
 
 test(
   'swagger page should be visible and loaded',
   { tag: ['@smoke', '@p1'] }, async ({ page }) => {
-  await page.goto('/swagger.html');
-  await page.waitForLoadState('load');
+  // Arrange
+  const swaggerPage = new SwaggerPage(page);
+
+  // Act
+  await swaggerPage.goto();
+
+  // Assert
   await expect(page).toHaveURL(expectedData.swagger.url);
-  await expect(page.frameLocator('#swagger-frame').locator('.info .description')).toHaveText(expectedData.swagger.subtitle);
+  await expect(swaggerPage.apiDescription).toHaveText(expectedData.swagger.subtitle);
 });
 
