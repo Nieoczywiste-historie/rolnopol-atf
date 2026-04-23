@@ -10,6 +10,8 @@ export class RegisterPage extends BasePage {
   readonly passwordInput: Locator;
   readonly createAccountButton: Locator;
   readonly successNotification: Locator;
+  readonly emailError: Locator;
+  readonly passwordError: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -19,6 +21,8 @@ export class RegisterPage extends BasePage {
     this.passwordInput = page.getByTestId('password-input');
     this.createAccountButton = page.getByTestId('register-submit-btn');
     this.successNotification = page.getByRole('alert').locator('.notification-message');
+    this.emailError = page.getByTestId('email-input').locator('..').getByRole('alert');
+    this.passwordError = page.getByTestId('password-input').locator('..').getByRole('alert');
   }
 
   async register(email: string, password: string, displayName?: string) {

@@ -87,6 +87,38 @@ test(
 });
 
 test(
+  'register with invalid email and valid password shows email validation error',
+  { tag: ['@p1', '@auth', '@registration', '@negative'] }, async ({ page }) => {
+  // Arrange
+  const registerPage = new RegisterPage(page);
+
+  await registerPage.goto();
+
+  // Act
+  await registerPage.register('notanemail', 'Test123!');
+
+  // Assert
+  await expect(registerPage.emailError).toHaveText('Please enter a valid email address');
+  await expect(page).toHaveURL(expectedData.register.url);
+});
+
+test(
+  'register with valid email and too-short password shows password validation error',
+  { tag: ['@p1', '@auth', '@registration', '@negative'] }, async ({ page }) => {
+  // Arrange
+  const registerPage = new RegisterPage(page);
+
+  await registerPage.goto();
+
+  // Act
+  await registerPage.register('valid@example.com', 'ab');
+
+  // Assert
+  await expect(registerPage.passwordError).toHaveText('Password must be at least 3 characters');
+  await expect(page).toHaveURL(expectedData.register.url);
+});
+
+test(
   'docs page should be visible and loaded',
   { tag: ['@smoke', '@p1'] }, async ({ page }) => {
   // Arrange

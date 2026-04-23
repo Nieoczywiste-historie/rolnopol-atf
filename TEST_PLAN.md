@@ -65,6 +65,8 @@ The plan includes E2E and API tests for key areas:
 | TP-15 | P1 | Smoke | Home page title is displayed | Page title contains 'Rolnopol' | `@p1` `@smoke` | Implemented |
 | TP-16 | P1 | Smoke | Login page is visible and loaded | URL matches `/login.html`, subtitle is visible | `@p1` `@smoke` `@auth` `@login` | Implemented |
 | TP-17 | P1 | Smoke | Register page is visible and loaded | URL matches `/register.html`, subtitle is visible | `@p1` `@smoke` `@auth` `@registration` | Implemented |
+| TP-18 | P1 | Auth | Register with invalid email and valid password | Email validation error shown, user stays on registration page | `@p1` `@auth` `@registration` `@negative` | Implemented |
+| TP-19 | P1 | Auth | Register with valid email and too-short password | Password validation error shown, user stays on registration page | `@p1` `@auth` `@registration` `@negative` | Implemented |
 
 ## 10. Risks And Notes
 - Documentation indicates demo-only security aspects (for example plain text passwords) and these should not be treated as production security criteria.
