@@ -98,6 +98,7 @@ test(
   await registerPage.register('notanemail', 'Test123!');
 
   // Assert
+  await expect(registerPage.emailError).toBeVisible();
   await expect(registerPage.emailError).toHaveText('Please enter a valid email address');
   await expect(page).toHaveURL(expectedData.register.url);
 });
@@ -112,7 +113,8 @@ test(
 
   // Act
   await registerPage.register('valid@example.com', 'ab');
-
+  // Assert
+  await expect(registerPage.passwordError).toBeVisible();
   // Assert
   await expect(registerPage.passwordError).toHaveText('Password must be at least 3 characters');
   await expect(page).toHaveURL(expectedData.register.url);
