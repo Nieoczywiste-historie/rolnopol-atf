@@ -1,13 +1,14 @@
-name: Hello from Cl
+name: Hello from CI
 
 on:
   push:
     branches:
-      - copilot/worktree-2026-05-04T12-01-03
+      - Create-github-action
+  workflow_dispatch:
 
 jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
       - name: Print greeting
-        run: echo "Hello form Cl"
+        run: echo "Hello from CI"
