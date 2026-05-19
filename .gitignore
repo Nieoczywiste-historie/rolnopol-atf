@@ -7,3 +7,7 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 .playwright-mcp/
+
+# Local AI temp workspace
+.ai-temp/*
+!.ai-temp/.gitkeep
