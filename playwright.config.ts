@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import 'dotenv/config';
 
 export default defineConfig({
   timeout: 10 * 1000,
@@ -9,7 +10,7 @@ export default defineConfig({
   
   use: {
     trace: 'on',
-    baseURL: 'http://localhost:3000',
+    baseURL: process.env.BASE_URL,
   },
   
   projects: [
