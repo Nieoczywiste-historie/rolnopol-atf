@@ -1,18 +1,15 @@
 import { expect, test } from '@playwright/test';
+import { createUser } from '../src/models/User';
 import { HomePage } from '../src/pages/HomePage';
 import { LoginPage } from '../src/pages/LoginPage';
 import { ProfilePage } from '../src/pages/ProfilePage';
-
-const testCredentials = {
-  email: 'emptyuser@rolnopol.demo.pl',
-  password: 'demoPass123',
-};
 
 test(
   'login with valid credentials, verify profile sections, and logout',
   { tag: ['@p1', '@auth', '@login', '@logout', '@smoke'] },
   async ({ page }) => {
     // Arrange
+    const user = createUser();
     const loginPage = new LoginPage(page);
     const profilePage = new ProfilePage(page);
     const homePage = new HomePage(page);
@@ -20,7 +17,7 @@ test(
     await loginPage.goto();
 
     // Act - Login
-    await loginPage.login(testCredentials.email, testCredentials.password);
+    await loginPage.login(user.email, user.password);
 
     // Assert - Login successful and redirected to profile page
     await expect(page).toHaveURL(profilePage.url);

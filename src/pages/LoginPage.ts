@@ -12,9 +12,9 @@ export class LoginPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.subtitle = page.getByTestId('login-subtitle');
-    this.emailInput = page.getByTestId('email-input');
-    this.passwordInput = page.getByTestId('password-input');
-    this.loginButton = page.getByTestId('login-submit-btn');
+    this.emailInput = page.getByRole('textbox', { name: 'Email' });
+    this.passwordInput = page.getByRole('textbox', { name: 'Password' });
+    this.loginButton = page.getByRole('button', { name: 'Login' });
   }
 
   async login(email: string, password: string) {
