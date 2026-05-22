@@ -49,9 +49,9 @@ The plan includes E2E and API tests for key areas:
 | ID | Priority | Area | Scenario | Expected Result | Tags | Status |
 |---|---|---|---|---|---|---|
 | TP-01 | P1 | Auth | Register a new user | Account created, success notification shown, redirected to login | `@p1` `@auth` `@registration` | Implemented |
-| TP-02 | P1 | Auth | Login with valid credentials | Token/cookies set, access to protected resources | `@p1` `@auth` `@login` `@smoke` | Not Implemented |
+| TP-02 | P1 | Auth | Login with valid credentials | Token/cookies set, access to protected resources | `@p1` `@auth` `@login` `@smoke` | Implemented |
 | TP-03 | P1 | Auth | Login with invalid credentials | Error message shown, no session created | `@p1` `@auth` `@login` `@negative` | Not Implemented |
-| TP-04 | P1 | Auth | Logout | Session removed, no access to protected resources | `@p1` `@auth` `@logout` | Not Implemented |
+| TP-04 | P1 | Auth | Logout | Session removed, no access to protected resources | `@p1` `@auth` `@logout` | Implemented |
 | TP-05 | P1 | RBAC | Farmer tries to access admin endpoint | Access denied (401/403) | `@p1` `@rbac` | Not Implemented |
 | TP-06 | P1 | Farm | Add field, animal, and staff member | Records saved and visible on dashboard | `@p1` `@farm` | Not Implemented |
 | TP-07 | P2 | Farm | Assign worker/animal to a field | Assignment created and data remains consistent | `@p2` `@farm` `@assignment` | Not Implemented |
