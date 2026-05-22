@@ -15,6 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment: dev
+    services:
+     app:
+        image: jaktestowac/rolnopol:latest
+        ports:
+          - 3000:3000
     env:
       BASE_URL: ${{ vars.BASE_URL }}
     steps:
