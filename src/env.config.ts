@@ -1,6 +1,6 @@
 import 'dotenv/config';
 
-const requiredVars = ['BASE_URL', 'USER_EMAIL', 'USER_PASSWORD'] as const;
+const requiredVars = ['BASE_URL', 'EMPTY_USER_EMAIL', 'EMPTY_USER_PASSWORD'] as const;
 
 type RequiredVar = (typeof requiredVars)[number];
 
@@ -29,6 +29,6 @@ function validateEnv(): Record<RequiredVar, string> {
 const env = validateEnv();
 
 export const BASE_URL = env.BASE_URL;
-export const USER_EMAIL = env.USER_EMAIL;
-export const USER_PASSWORD = env.USER_PASSWORD;
-export const USER_DISPLAY_NAME = process.env.USER_DISPLAY_NAME;
+export const EMPTY_USER_EMAIL = env.EMPTY_USER_EMAIL;
+export const EMPTY_USER_PASSWORD = env.EMPTY_USER_PASSWORD;
+export const EMPTY_USER_DISPLAY_NAME = process.env.EMPTY_USER_DISPLAY_NAME;
