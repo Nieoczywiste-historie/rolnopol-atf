@@ -51,8 +51,8 @@ test(
   await loginPage.goto();
 
   // Assert
-  await expect(page).toHaveURL(expectedData.login.url);
-  await expect(loginPage.subtitle).toHaveText(expectedData.login.subtitle);
+  await expect.soft(page).toHaveURL(expectedData.login.url);
+  await expect.soft(loginPage.subtitle).toHaveText(expectedData.login.subtitle);
 });
 
 test(
@@ -65,8 +65,8 @@ test(
   await registerPage.goto();
 
   // Assert
-  await expect(page).toHaveURL(expectedData.register.url);
-  await expect(registerPage.subtitle).toHaveText(expectedData.register.subtitle);
+  await expect.soft(page).toHaveURL(expectedData.register.url);
+  await expect.soft(registerPage.subtitle).toHaveText(expectedData.register.subtitle);
 });
 
 test(
@@ -82,8 +82,8 @@ test(
   await registerPage.register(uniqueEmail, 'Test123!', 'ATF Test User');
 
   // Assert
-  await expect(registerPage.successNotification).toHaveText('Registration successful!');
-  await expect(page).toHaveURL(expectedData.login.url);
+  await expect.soft(registerPage.successNotification).toHaveText('Registration successful!');
+  await expect.soft(page).toHaveURL(expectedData.login.url);
 });
 
 test(
@@ -98,8 +98,8 @@ test(
   await registerPage.register('notanemail', 'Test123!');
 
   // Assert
-  await expect(registerPage.emailError).toHaveText('Please enter a valid email address');
-  await expect(page).toHaveURL(expectedData.register.url);
+  await expect.soft(registerPage.emailError).toHaveText('Please enter a valid email address');
+  await expect.soft(page).toHaveURL(expectedData.register.url);
 });
 
 test(
@@ -114,8 +114,8 @@ test(
   await registerPage.register('valid@example.com', 'ab');
 
   // Assert
-  await expect(registerPage.passwordError).toHaveText('Password must be at least 3 characters');
-  await expect(page).toHaveURL(expectedData.register.url);
+  await expect.soft(registerPage.passwordError).toHaveText('Password must be at least 3 characters');
+  await expect.soft(page).toHaveURL(expectedData.register.url);
 });
 
 test(
@@ -128,8 +128,8 @@ test(
   await docsPage.goto();
 
   // Assert
-  await expect(page).toHaveURL(expectedData.docs.url);
-  await expect(docsPage.subtitle).toHaveText(expectedData.docs.subtitle);
+  await expect.soft(page).toHaveURL(expectedData.docs.url);
+  await expect.soft(docsPage.subtitle).toHaveText(expectedData.docs.subtitle);
 });
 
 test(
@@ -142,7 +142,7 @@ test(
   await swaggerPage.goto();
 
   // Assert
-  await expect(page).toHaveURL(expectedData.swagger.url);
-  await expect(swaggerPage.apiDescription).toHaveText(expectedData.swagger.subtitle);
+  await expect.soft(page).toHaveURL(expectedData.swagger.url);
+  await expect.soft(swaggerPage.apiDescription).toHaveText(expectedData.swagger.subtitle);
 });
 

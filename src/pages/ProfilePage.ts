@@ -9,6 +9,14 @@ export class ProfilePage extends BasePage {
   readonly updateProfileHeading: Locator;
   readonly dangerZoneHeading: Locator;
   readonly logoutButton: Locator;
+  readonly userId: Locator;
+  readonly displayedName: Locator;
+  readonly emailValue: Locator;
+  readonly profileHeaderName: Locator;
+  readonly profileHeaderEmail: Locator;
+  readonly accountStatus: Locator;
+  readonly deleteAccountButton: Locator;
+  readonly saveChangesButton: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -17,6 +25,14 @@ export class ProfilePage extends BasePage {
     this.updateProfileHeading = page.getByRole('heading', { name: 'Update Profile' });
     this.dangerZoneHeading = page.getByRole('heading', { name: 'Danger Zone' });
     this.logoutButton = page.getByTestId('header-component').getByTestId('logout-btn');
+    this.userId = page.getByTestId('user-id');
+    this.displayedName = page.getByTestId('displayed-name');
+    this.emailValue = page.getByTestId('email-value');
+    this.profileHeaderName = page.locator('#profileName');
+    this.profileHeaderEmail = page.locator('#profileEmail');
+    this.accountStatus = page.locator('#statusText');
+    this.deleteAccountButton = page.getByTestId('delete-account-btn');
+    this.saveChangesButton = page.getByTestId('update-profile-submit-btn');
   }
 
   async logout() {

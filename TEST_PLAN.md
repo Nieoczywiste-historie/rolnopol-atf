@@ -67,6 +67,7 @@ The plan includes E2E and API tests for key areas:
 | TP-17 | P1 | Smoke | Register page is visible and loaded | URL matches `/register.html`, subtitle is visible | `@p1` `@smoke` `@auth` `@registration` | Implemented |
 | TP-18 | P1 | Auth | Register with invalid email and valid password | Email validation error shown, user stays on registration page | `@p1` `@auth` `@registration` `@negative` | Implemented |
 | TP-19 | P1 | Auth | Register with valid email and too-short password | Password validation error shown, user stays on registration page | `@p1` `@auth` `@registration` `@negative` | Implemented |
+| TP-20 | P1 | Auth | Verify profile page displays correct user information | After login, profile shows user display name, email, status, and user ID | `@p1` `@auth` `@login` | Implemented |
 
 ## 10. Risks And Notes
 - Documentation indicates demo-only security aspects (for example plain text passwords) and these should not be treated as production security criteria.
