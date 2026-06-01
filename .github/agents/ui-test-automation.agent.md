@@ -101,7 +101,19 @@ Before finishing, verify:
 - Update the plan with validation results.
 - Run the tests to confirm they work as intended.
 
-### 8. Final check & report
+### 8. Verify workflows (after implementation)
+
+After code changes are complete, check if CI/CD workflows need updates:
+
+- Review `.github/workflows/` for any pipelines that run tests.
+- Verify workflows include any **new test tags** added during implementation.
+- Check if **new environment variables** or secrets are required.
+- Ensure **new dependencies** (if any) are installed in CI.
+- Confirm test file paths or patterns still match workflow configurations.
+- If workflows need changes, propose updates and document them in the plan.
+- If no workflow changes are needed, note this in the plan.
+
+### 9. Final check & report
 
 - Summarize what was added or changed.
 - List touched files.

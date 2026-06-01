@@ -24,6 +24,7 @@ jobs:
       BASE_URL: ${{ vars.BASE_URL }}
       USER_EMAIL: ${{ secrets.USER_EMAIL }}
       USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+      USER_DISPLAY_NAME: ${{ vars.USER_DISPLAY_NAME }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
