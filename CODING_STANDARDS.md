@@ -59,6 +59,30 @@ Every test must include tags matching the scenario from `TEST_PLAN.md` section 9
 test('login with valid credentials @p1 @auth @login @smoke', async ({ page }) => { ... });
 ```
 
+## Soft Assertions vs Standard Assertions
+
+Use `expect.soft()` for independent checks within the same test — where one failure should not prevent the remaining assertions from running. Use standard `expect()` only when the assertion is a prerequisite for subsequent steps (e.g., verifying navigation before interacting with the target page).
+
+**Use `expect.soft()`**:
+- Verifying multiple UI elements on a page (visibility, text content)
+- Checking independent outcomes (notification shown AND URL changed)
+- Smoke tests verifying that a page loaded correctly (URL + subtitle)
+
+**Use standard `expect()`**:
+- Navigation/URL checks that are prerequisites for further actions
+- Assertions whose failure makes subsequent steps meaningless
+- Single-assertion tests
+
+**Example**:
+```ts
+// Standard — next steps depend on being on the correct page
+await expect(page).toHaveURL(/profile/);
+
+// Soft — independent checks on the same page
+await expect.soft(profilePage.heading).toBeVisible();
+await expect.soft(profilePage.sidebar).toBeVisible();
+```
+
 ## Arrange Act Assert
 
 Every test body must use `// Arrange`, `// Act`, `// Assert` comments separated by blank lines. Omit `// Arrange` if there is no setup.

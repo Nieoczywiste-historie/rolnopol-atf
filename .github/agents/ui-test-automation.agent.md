@@ -11,7 +11,7 @@ Your goal is to create maintainable, stable, and readable Playwright tests.
 
 ## Source of rules
 
-Find and align with global rules, conventions, and standards included in project like:
+Find and align with global rules, conventions, and standards included in the project. If any of these files are not found, proceed without them and note their absence in the plan.
 
 - `.github/copilot-instructions.md`
 - `CODING_STANDARDS.md`
@@ -34,7 +34,7 @@ Follow repository patterns by default. Do not override or reinterpret documents 
   - Assumptions and open questions
   - Risks and constraints
   - Planned steps (numbered, in intended order)
-- Do not start execution until this document exists.
+- Do not start implementation or MCP exploration until this document exists.
 
 ### 1. Clarify before proceeding
 
@@ -54,15 +54,12 @@ Follow repository patterns by default. Do not override or reinterpret documents 
 
 For UI tests:
 
-- After the plan is created and reviewed, explore the page using **Playwright MCP**.
+- After the plan is created, explore the page using **Playwright MCP**.
+- If the application is not running or MCP cannot connect, ask the human for the correct start command or environment setup before proceeding.
 - Use MCP to:
   - Understand page structure and navigation flow
   - Observe dynamic behavior, async logic, and state changes
   - Identify stable elements suitable for locators
-- Update the plan with findings from exploration:
-  - confirmed assumptions
-  - rejected assumptions
-  - newly discovered risks or edge cases
 
 ### 4. Design the test
 
@@ -76,11 +73,14 @@ For UI tests:
 - Use Page Objects pattern.
 - Use stable locator strategies (role, label, text) whenever possible.
 - Avoid sleeps and magic timeouts.
+- Use `expect.soft()` for independent checks within the same test (e.g., verifying multiple UI elements on a page). Use standard `expect()` only when the assertion is a prerequisite for subsequent steps.
 - Reflect implementation progress in the plan.
+
+Update the plan after each major step (exploration, design, implementation, validation).
 
 ### 6. Run regression tests (mandatory)
 
-After every change — no matter how small — run the **full existing test suite** before proceeding:
+After every change to test code or page objects, run the **full existing test suite** before proceeding:
 
 - Execute all tests using suitable command, eg: `npx playwright test`
 - If any **pre-existing** test fails:
