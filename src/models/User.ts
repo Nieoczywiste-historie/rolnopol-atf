@@ -1,4 +1,4 @@
-import { USER_DISPLAY_NAME, USER_EMAIL, USER_PASSWORD } from '../env.config';
+import { EMPTY_USER_DISPLAY_NAME, EMPTY_USER_EMAIL, EMPTY_USER_PASSWORD } from '../env.config';
 
 export interface User {
   email: string;
@@ -8,8 +8,8 @@ export interface User {
 
 export function createUser(overrides: Partial<User> = {}): User {
   return {
-    email: overrides.email ?? USER_EMAIL,
-    password: overrides.password ?? USER_PASSWORD,
-    displayName: overrides.displayName ?? USER_DISPLAY_NAME,
+    email: overrides.email ?? EMPTY_USER_EMAIL,
+    password: overrides.password ?? EMPTY_USER_PASSWORD,
+    displayName: overrides.displayName ?? EMPTY_USER_DISPLAY_NAME,
   };
 }
