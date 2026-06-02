@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { createUser } from '../src/models/User';
+import { getEmptyUser } from '../src/models/User';
 import { HomePage } from '../src/pages/HomePage';
 import { LoginPage } from '../src/pages/LoginPage';
 import { ProfilePage } from '../src/pages/ProfilePage';
@@ -9,7 +9,7 @@ test(
   { tag: ['@p1', '@auth', '@login', '@logout', '@smoke'] },
   async ({ page }) => {
     // Arrange
-    const user = createUser();
+    const user = getEmptyUser();
     const loginPage = new LoginPage(page);
     const profilePage = new ProfilePage(page);
     const homePage = new HomePage(page);
@@ -40,7 +40,7 @@ test(
   { tag: ['@p1', '@auth', '@login'] },
   async ({ page }) => {
     // Arrange
-    const user = createUser();
+    const user = getEmptyUser();
     const loginPage = new LoginPage(page);
     const profilePage = new ProfilePage(page);
 
