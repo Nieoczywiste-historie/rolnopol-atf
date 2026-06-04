@@ -27,8 +27,8 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
     {
-      name: 'demo-user',
-      testMatch: 'tests/auth/**/*.spec.ts',
+      name: 'farm-tests',
+      testMatch: 'tests/farm/**/*.spec.ts',
       dependencies: ['setup'],
       use: {
         ...devices['Desktop Chrome'],
@@ -36,9 +36,9 @@ export default defineConfig({
       },
     },
     {
-      name: 'farm-tests',
-      testMatch: 'tests/farm/**/*.spec.ts',
-      dependencies: ['setup'],
+      name: 'demo-user',
+      testMatch: 'tests/auth/**/*.spec.ts',
+      dependencies: ['setup', 'farm-tests'],
       use: {
         ...devices['Desktop Chrome'],
         storageState: DEMO_USER_STORAGE_STATE,

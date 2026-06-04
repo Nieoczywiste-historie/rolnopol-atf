@@ -33,7 +33,6 @@ export class StaffFieldsMainPage extends BasePage {
 
   async goto() {
     await this.page.goto(this.url);
-    await this.page.waitForLoadState('networkidle');
     await this.heading.waitFor({ state: 'visible' });
   }
 

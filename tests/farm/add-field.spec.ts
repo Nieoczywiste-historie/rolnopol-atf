@@ -11,6 +11,7 @@ test(
     const fieldArea = '10';
 
     await staffFieldsPage.goto();
+    await expect(page).toHaveURL(/staff-fields-main/);
 
     // Act
     await staffFieldsPage.openAddFieldModal();
