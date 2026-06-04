@@ -7,11 +7,10 @@ test(
   async ({ page }) => {
     // Arrange
     const staffFieldsPage = new StaffFieldsMainPage(page);
-    const fieldName = `ATF Field ${Date.now()}`;
+    const fieldName = `ATF Field ${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
     const fieldArea = '10';
 
     await staffFieldsPage.goto();
-    await expect(staffFieldsPage.heading).toBeVisible();
 
     // Act
     await staffFieldsPage.openAddFieldModal();

@@ -14,6 +14,7 @@ export class StaffFieldsMainPage extends BasePage {
   readonly fieldsList: Locator;
   readonly searchFieldsInput: Locator;
   readonly fieldAddedNotification: Locator;
+  readonly addFieldModalHeading: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -27,6 +28,13 @@ export class StaffFieldsMainPage extends BasePage {
     this.fieldsList = page.locator('.fields-list');
     this.searchFieldsInput = page.getByPlaceholder('Search fields...');
     this.fieldAddedNotification = page.getByText('Field added!');
+    this.addFieldModalHeading = page.getByRole('heading', { name: 'Add Field', level: 3 });
+  }
+
+  async goto() {
+    await this.page.goto(this.url);
+    await this.page.waitForLoadState('networkidle');
+    await this.heading.waitFor({ state: 'visible' });
   }
 
   async openAddFieldModal() {
