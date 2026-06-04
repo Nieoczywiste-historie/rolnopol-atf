@@ -13,6 +13,7 @@ export class StaffFieldsMainPage extends BasePage {
   readonly submitAddFieldButton: Locator;
   readonly fieldsList: Locator;
   readonly searchFieldsInput: Locator;
+  readonly fieldAddedNotification: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -25,10 +26,12 @@ export class StaffFieldsMainPage extends BasePage {
     this.submitAddFieldButton = page.locator('#addFieldForm').getByRole('button', { name: '+ Add Field' });
     this.fieldsList = page.locator('.fields-list');
     this.searchFieldsInput = page.getByPlaceholder('Search fields...');
+    this.fieldAddedNotification = page.getByText('Field added!');
   }
 
   async openAddFieldModal() {
     await this.addFieldButton.click();
+    await this.fieldNameInput.waitFor({ state: 'visible' });
   }
 
   async fillFieldForm(name: string, area: string, district?: string) {
@@ -41,6 +44,7 @@ export class StaffFieldsMainPage extends BasePage {
 
   async submitAddField() {
     await this.submitAddFieldButton.click();
+    await this.fieldNameInput.waitFor({ state: 'hidden' });
   }
 
   getFieldByName(name: string): Locator {

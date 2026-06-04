@@ -11,6 +11,7 @@ test(
     const fieldArea = '10';
 
     await staffFieldsPage.goto();
+    await expect(staffFieldsPage.heading).toBeVisible();
 
     // Act
     await staffFieldsPage.openAddFieldModal();
@@ -18,7 +19,8 @@ test(
     await staffFieldsPage.submitAddField();
 
     // Assert
-    await expect(staffFieldsPage.searchFieldsInput).toBeVisible();
+    await expect.soft(staffFieldsPage.fieldAddedNotification).toBeVisible();
+
     await staffFieldsPage.searchFieldsInput.fill(fieldName);
 
     const createdField = staffFieldsPage.getFieldByName(fieldName);
