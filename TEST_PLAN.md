@@ -53,7 +53,7 @@ The plan includes E2E and API tests for key areas:
 | TP-03 | P1 | Auth | Login with invalid credentials | Error message shown, no session created | `@p1` `@auth` `@login` `@negative` | Not Implemented |
 | TP-04 | P1 | Auth | Logout | Session removed, no access to protected resources | `@p1` `@auth` `@logout` | Implemented |
 | TP-05 | P1 | RBAC | Farmer tries to access admin endpoint | Access denied (401/403) | `@p1` `@rbac` | Not Implemented |
-| TP-06 | P1 | Farm | Add field, animal, and staff member | Records saved and visible on dashboard | `@p1` `@farm` | Not Implemented |
+| TP-06 | P1 | Farm | Add field, animal, and staff member | Records saved and visible on dashboard | `@p1` `@farm` | Partially Implemented |
 | TP-07 | P2 | Farm | Assign worker/animal to a field | Assignment created and data remains consistent | `@p2` `@farm` `@assignment` | Not Implemented |
 | TP-08 | P1 | Marketplace | List an unassigned resource | Offer has `active` status | `@p1` `@marketplace` | Not Implemented |
 | TP-09 | P1 | Marketplace | Try to list an assigned resource | Offer has `unavailable` status or operation is blocked | `@p1` `@marketplace` `@negative` | Not Implemented |
