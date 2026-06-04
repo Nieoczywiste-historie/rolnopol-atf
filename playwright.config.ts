@@ -1,6 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 import { BASE_URL } from './src/env.config';
 
+const DEMO_USER_STORAGE_STATE = 'playwright/.auth/user.json';
+
 export default defineConfig({
   timeout: 10 * 1000,
   testDir: './tests',
@@ -15,8 +17,32 @@ export default defineConfig({
   
   projects: [
     {
-      name: 'chromium',
+      name: 'setup',
+      testMatch: 'tests/auth/setup.demo-user.ts',
       use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'smoke-tests',
+      testMatch: 'tests/**/*.smoke.spec.ts',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'demo-user',
+      testMatch: 'tests/auth/**/*.spec.ts',
+      dependencies: ['setup'],
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: DEMO_USER_STORAGE_STATE,
+      },
+    },
+    {
+      name: 'farm-tests',
+      testMatch: 'tests/farm/**/*.spec.ts',
+      dependencies: ['setup'],
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: DEMO_USER_STORAGE_STATE,
+      },
     },
   ],
 });

@@ -4,7 +4,9 @@
 			"type": "stdio",
 			"command": "npx",
 			"args": [
-				"@playwright/mcp@latest"
+				"@playwright/mcp@latest",
+				"--isolated",
+				"--storage-state=playwright/.auth/user.json"
 			],
 			"gallery": "https://api.mcp.github.com",
 			"version": "0.0.1-seed"
