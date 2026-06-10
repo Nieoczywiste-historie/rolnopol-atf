@@ -17,6 +17,10 @@ export default defineConfig({
   
   projects: [
     {
+      name: 'unit-tests',
+      testMatch: 'tests/unit/**/*.ts',
+    },
+    {
       name: 'setup',
       testMatch: 'tests/auth/setup.demo-user.ts',
       use: { ...devices['Desktop Chrome'] },

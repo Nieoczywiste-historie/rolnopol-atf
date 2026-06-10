@@ -10,7 +10,7 @@ const requiredVars = [
 
 type RequiredVar = (typeof requiredVars)[number];
 
-function validateEnv(): Record<RequiredVar, string> {
+export function validateEnv(): Record<RequiredVar, string> {
   const missing: string[] = [];
 
   for (const name of requiredVars) {
