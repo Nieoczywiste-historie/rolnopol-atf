@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+
 import { validateEnv } from '../../src/env.config';
 
 const REQUIRED_VAR_NAMES = [
