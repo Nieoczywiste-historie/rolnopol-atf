@@ -9,13 +9,15 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
 
-  reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : [['html', { open: 'never' }]],
-  
+  reporter: process.env.CI
+    ? [['github'], ['html', { open: 'never' }]]
+    : [['html', { open: 'never' }]],
+
   use: {
     trace: 'on',
     baseURL: BASE_URL,
   },
-  
+
   projects: [
     {
       name: 'unit-tests',

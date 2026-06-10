@@ -26,7 +26,7 @@ test(
 
     // Assert
     await expect(page).toHaveURL(homePage.url);
-  }
+  },
 );
 
 test(
@@ -50,5 +50,5 @@ test(
     await expect.soft(profilePage.emailValue).toHaveText(user.email);
     await expect.soft(profilePage.saveChangesButton).toBeVisible();
     await expect.soft(profilePage.deleteAccountButton).toBeVisible();
-  }
+  },
 );

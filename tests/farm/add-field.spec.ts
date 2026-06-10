@@ -28,5 +28,5 @@ test(
     await expect(createdField).toBeVisible();
     await expect.soft(createdField.locator('strong')).toHaveText(fieldName);
     await expect.soft(createdField).toContainText(`${fieldArea} ha`);
-  }
+  },
 );

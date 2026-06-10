@@ -24,5 +24,5 @@ test(
     await expect(page).toHaveURL(profilePage.url);
 
     await page.context().storageState({ path: DEMO_USER_STORAGE_STATE });
-  }
+  },
 );

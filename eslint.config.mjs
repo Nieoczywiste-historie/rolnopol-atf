@@ -31,5 +31,5 @@ export default tseslint.config(
     rules: {
       'playwright/no-focused-test': 'error',
     },
-  }
+  },
 );

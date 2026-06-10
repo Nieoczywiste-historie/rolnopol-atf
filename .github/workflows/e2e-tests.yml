@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 20
     environment: dev
     services:
-     app:
+      app:
         image: jaktestowac/rolnopol:latest
         ports:
           - 3000:3000
