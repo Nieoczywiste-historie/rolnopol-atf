@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+
 import { generateUniqueEmail } from '../src/helpers/email';
 import { DocsPage } from '../src/pages/DocsPage';
 import { HomePage } from '../src/pages/HomePage';
@@ -28,9 +29,7 @@ const expectedData = {
   },
 };
 
-test(
-  'should display Rolnopol in the page title',
-  { tag: ['@smoke', '@p1'] }, async ({ page }) => {
+test('should display Rolnopol in the page title', { tag: ['@smoke', '@p1'] }, async ({ page }) => {
   // Arrange
   const homePage = new HomePage(page);
 
@@ -43,84 +42,94 @@ test(
 
 test(
   'login page should be visible and loaded',
-  { tag: ['@smoke', '@p1', '@auth', '@login'] }, async ({ page }) => {
-  // Arrange
-  const loginPage = new LoginPage(page);
+  { tag: ['@smoke', '@p1', '@auth', '@login'] },
+  async ({ page }) => {
+    // Arrange
+    const loginPage = new LoginPage(page);
 
-  // Act
-  await loginPage.goto();
+    // Act
+    await loginPage.goto();
 
-  // Assert
-  await expect.soft(page).toHaveURL(expectedData.login.url);
-  await expect.soft(loginPage.subtitle).toHaveText(expectedData.login.subtitle);
-});
+    // Assert
+    await expect.soft(page).toHaveURL(expectedData.login.url);
+    await expect.soft(loginPage.subtitle).toHaveText(expectedData.login.subtitle);
+  },
+);
 
 test(
   'register page should be visible and loaded',
-  { tag: ['@smoke', '@p1', '@auth', '@registration'] }, async ({ page }) => {
-  // Arrange
-  const registerPage = new RegisterPage(page);
+  { tag: ['@smoke', '@p1', '@auth', '@registration'] },
+  async ({ page }) => {
+    // Arrange
+    const registerPage = new RegisterPage(page);
 
-  // Act
-  await registerPage.goto();
+    // Act
+    await registerPage.goto();
 
-  // Assert
-  await expect.soft(page).toHaveURL(expectedData.register.url);
-  await expect.soft(registerPage.subtitle).toHaveText(expectedData.register.subtitle);
-});
+    // Assert
+    await expect.soft(page).toHaveURL(expectedData.register.url);
+    await expect.soft(registerPage.subtitle).toHaveText(expectedData.register.subtitle);
+  },
+);
 
 test(
   'register a new user with valid data',
-  { tag: ['@p1', '@auth', '@registration'] }, async ({ page }) => {
-  // Arrange
-  const registerPage = new RegisterPage(page);
-  const uniqueEmail = generateUniqueEmail();
+  { tag: ['@p1', '@auth', '@registration'] },
+  async ({ page }) => {
+    // Arrange
+    const registerPage = new RegisterPage(page);
+    const uniqueEmail = generateUniqueEmail();
 
-  await registerPage.goto();
+    await registerPage.goto();
 
-  // Act
-  await registerPage.register(uniqueEmail, 'Test123!', 'ATF Test User');
+    // Act
+    await registerPage.register(uniqueEmail, 'Test123!', 'ATF Test User');
 
-  // Assert
-  await expect.soft(registerPage.successNotification).toHaveText('Registration successful!');
-  await expect.soft(page).toHaveURL(expectedData.login.url);
-});
+    // Assert
+    await expect.soft(registerPage.successNotification).toHaveText('Registration successful!');
+    await expect.soft(page).toHaveURL(expectedData.login.url);
+  },
+);
 
 test(
   'register with invalid email and valid password shows email validation error',
-  { tag: ['@p1', '@auth', '@registration', '@negative'] }, async ({ page }) => {
-  // Arrange
-  const registerPage = new RegisterPage(page);
+  { tag: ['@p1', '@auth', '@registration', '@negative'] },
+  async ({ page }) => {
+    // Arrange
+    const registerPage = new RegisterPage(page);
 
-  await registerPage.goto();
+    await registerPage.goto();
 
-  // Act
-  await registerPage.register('notanemail', 'Test123!');
+    // Act
+    await registerPage.register('notanemail', 'Test123!');
 
-  // Assert
-  await expect.soft(registerPage.emailError).toHaveText('Please enter a valid email address');
-  await expect.soft(page).toHaveURL(expectedData.register.url);
-});
+    // Assert
+    await expect.soft(registerPage.emailError).toHaveText('Please enter a valid email address');
+    await expect.soft(page).toHaveURL(expectedData.register.url);
+  },
+);
 
 test(
   'register with valid email and too-short password shows password validation error',
-  { tag: ['@p1', '@auth', '@registration', '@negative'] }, async ({ page }) => {
-  // Arrange
-  const registerPage = new RegisterPage(page);
+  { tag: ['@p1', '@auth', '@registration', '@negative'] },
+  async ({ page }) => {
+    // Arrange
+    const registerPage = new RegisterPage(page);
 
-  await registerPage.goto();
+    await registerPage.goto();
 
-  // Act
-  await registerPage.register('valid@example.com', 'ab');
+    // Act
+    await registerPage.register('valid@example.com', 'ab');
 
-  // Assert
-  await expect.soft(registerPage.passwordError).toHaveText('Password must be at least 3 characters');
-  await expect.soft(page).toHaveURL(expectedData.register.url);
-});
+    // Assert
+    await expect
+      .soft(registerPage.passwordError)
+      .toHaveText('Password must be at least 3 characters');
+    await expect.soft(page).toHaveURL(expectedData.register.url);
+  },
+);
 
-test(
-  'docs page should be visible and loaded',
-  { tag: ['@smoke', '@p1'] }, async ({ page }) => {
+test('docs page should be visible and loaded', { tag: ['@smoke', '@p1'] }, async ({ page }) => {
   // Arrange
   const docsPage = new DocsPage(page);
 
@@ -132,9 +141,7 @@ test(
   await expect.soft(docsPage.subtitle).toHaveText(expectedData.docs.subtitle);
 });
 
-test(
-  'swagger page should be visible and loaded',
-  { tag: ['@smoke', '@p1'] }, async ({ page }) => {
+test('swagger page should be visible and loaded', { tag: ['@smoke', '@p1'] }, async ({ page }) => {
   // Arrange
   const swaggerPage = new SwaggerPage(page);
 
@@ -145,4 +152,3 @@ test(
   await expect.soft(page).toHaveURL(expectedData.swagger.url);
   await expect.soft(swaggerPage.apiDescription).toHaveText(expectedData.swagger.subtitle);
 });
-

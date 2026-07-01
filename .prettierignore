@@ -1,0 +1,11 @@
+node_modules
+package-lock.json
+playwright-report
+test-results
+.github/agents/*.agent.md
+.github/prompts/*.prompt.md
+.github/skills/**/SKILL.md
+.github/copilot-instructions.md
+CODING_STANDARDS.md
+TEST_PLAN.md
+.vscode/mcp.json

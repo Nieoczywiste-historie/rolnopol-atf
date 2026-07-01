@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+
 import { StaffFieldsMainPage } from '../../src/pages/StaffFieldsMainPage';
 
 test(
@@ -27,5 +28,5 @@ test(
     await expect(createdField).toBeVisible();
     await expect.soft(createdField.locator('strong')).toHaveText(fieldName);
     await expect.soft(createdField).toContainText(`${fieldArea} ha`);
-  }
+  },
 );

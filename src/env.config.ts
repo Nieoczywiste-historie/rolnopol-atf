@@ -22,7 +22,7 @@ export function validateEnv(): Record<RequiredVar, string> {
 
   if (missing.length > 0) {
     throw new Error(
-      `Missing or empty environment variables:\n${missing.map((v) => `  - ${v}`).join('\n')}`
+      `Missing or empty environment variables:\n${missing.map((v) => `  - ${v}`).join('\n')}`,
     );
   }
 

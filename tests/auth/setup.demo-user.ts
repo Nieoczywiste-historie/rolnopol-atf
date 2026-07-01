@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+
 import { getDemoUser } from '../../src/models/User';
 import { LoginPage } from '../../src/pages/LoginPage';
 import { ProfilePage } from '../../src/pages/ProfilePage';
@@ -23,5 +24,5 @@ test(
     await expect(page).toHaveURL(profilePage.url);
 
     await page.context().storageState({ path: DEMO_USER_STORAGE_STATE });
-  }
+  },
 );

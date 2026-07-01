@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+
 import { BASE_URL } from './src/env.config';
 
 const DEMO_USER_STORAGE_STATE = 'playwright/.auth/user.json';
@@ -8,13 +9,15 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
 
-  reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : [['html', { open: 'never' }]],
-  
+  reporter: process.env.CI
+    ? [['github'], ['html', { open: 'never' }]]
+    : [['html', { open: 'never' }]],
+
   use: {
     trace: 'on',
     baseURL: BASE_URL,
   },
-  
+
   projects: [
     {
       name: 'unit-tests',

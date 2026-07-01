@@ -1,9 +1,11 @@
 ---
 name: sync-test-plan
-description: This prompt is used to review the TEST_PLAN and verify that it matches the current implemented tests.
+description: Focused one-shot review of TEST_PLAN alignment with current implemented tests.
 ---
 
 <!-- Tip: Use /create-prompt in chat to generate content with agent assistance -->
 
- Review the TEST_PLAN and verify that it matches the current implemented tests. If some requirements are only partially implemented, split them into separate parts.
+Review `TEST_PLAN.md` and verify that it matches the current implemented tests.
+Inspect `tests/**`, `playwright.config.ts`, and `.github/workflows/**` as needed.
+If some requirements are only partially implemented, split them into separate parts.
 
